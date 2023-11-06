@@ -1,0 +1,21 @@
+#include<stdio.h>
+void accept(int *num)
+{   
+ printf("enter the number\n");    scanf("%d",num);
+}
+void reverse(int n,int *rev)
+{   
+ int res;    
+while(n>0)   
+{
+ res=n%10;        
+*rev=(*rev)*10+res;       
+ n=n/10;   
+ }
+}
+int main()
+{    
+int n,rev=0;   
+ accept(&n);    
+reverse(n,&rev);    printf("reverse number is %d\n",rev);
+}

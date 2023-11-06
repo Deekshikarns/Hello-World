@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max_size 20
+void insert(int *Q,int *rear,int elem)
+{   
+  (*rear)++;
+    if(*rear==0)   
+ {      
+   Q[*rear]=elem; 
+   }   
+ else 
+   {      
+  Q=(int*)realloc(Q,sizeof(int)*((*rear)+1));  
+       Q[*rear]=elem;   
+ }
+}
+void delete(int *Q,int *front,int rear)
+{  
+  int elem;  
+  if(*front>rear)  
+  {
+        printf("deletion is not possible\n"); 
+       return;    
+} 
+  elem= Q[*front];  
+ (*front)++;  
+  printf("deleted elem is %d\n",elem);
+}
+void display(int *Q,int front,int rear)
+{   
+ if(front>rear)
+    {       
+ printf("no elementin queue\n");
+        return;
+    } 
+   printf("elements in queues\n"); 
+   for(int i=front;i<=rear;i++)   
+ printf("%d\n",Q[i]);
+}
+int main()
+{
+int *Q,front=0,rear=-1,elem,ch;
+    Q=(int*)malloc(sizeof(int));  
+  while(1)   
+ {    
+    printf("enter 1.insert\t 2.delete\t 3.display\t 4.exit\n");  
+      scanf("%d",&ch);  
+      switch(ch)     
+   {      
+      case 1:          
+         printf("enter the element\n");     
+              scanf("%d",&elem);          
+         insert(Q,&rear,elem);         
+          break;          
+  case 2:                
+   delete(Q,&front,rear);  
+                 break;         
+   case 3:           
+        display(Q,front,rear);       
+            break;     
+       default:           
+         exit(0);    
+    }  
+  }
+}

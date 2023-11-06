@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+int info;
+struct node *link;
+};
+typedef struct node *NODE;
+NODE getnode()
+{
+NODE x;
+x=(NODE)malloc(sizeof(struct node));
+if(x==NULL)
+{
+printf("memory not available\n");
+exit(0);
+}
+return x;
+}
+NODE insert_rear(NODE first,int elem)
+{
+NODE temp,cur,prev;
+temp=getnode();
+temp->link=NULL;
+temp->info=elem;
+if(first==NULL)
+return temp;
+cur=first;
+prev=NULL;
+while(cur!=NULL)
+{
+prev=cur;
+cur=cur->link;
+}
+prev->link=temp;
+return first;
+}
+NODE concat_sll(NODE first,NODE second)
+{
+NODE cur;
+if(first==NULL)
+{
+first=second;
+return second;
+}
+ if(second==NULL)
+ return first;
+cur=first;
+while(cur->link!=NULL)
+cur=cur->link;
+cur->link=second;
+return first;
+}
+void display(NODE first)
+{
+NODE cur;
+cur=first;
+if(cur==NULL)
+{
+printf("SLL is empty");
+return;
+}
+printf("elem of sll\n");
+while(cur!=NULL)
+{
+printf("%d\n",cur->info);
+cur=cur->link;
+}
+}
+int main()
+{
+NODE first=NULL,second=NULL;
+int elem,ch;
+while(1)
+{
+printf("enter 1.1insert_rear\t 2. 2insert_rear\t 3.concat\t  4.exit\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+       printf("Enter the first element\n");
+       scanf("%d",&elem);
+       first=insert_rear(first,elem);
+       break;
+case 2:
+      printf("Enter the second element\n");
+       scanf("%d",&elem);
+       second=insert_rear(second,elem);
+       break;
+case 3:
+       concat_sll(first,second);
+       printf("Concatenated list is :\n");
+       display(first);
+       break;
+default:
+         exit(0);
+ }
+}
+}

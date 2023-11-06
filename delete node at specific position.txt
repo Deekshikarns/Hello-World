@@ -1,0 +1,101 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int info;
+struct node *link;
+};
+typedef struct node *NODE;
+NODE getnode()
+{
+NODE x;
+x=(NODE)malloc(sizeof(struct node));
+if(x==NULL)
+{
+printf("memory not available\n");
+exit(0);
+}
+return x;
+}
+NODE insert_rear(NODE first,int elem)
+{
+NODE temp,cur,prev;
+temp=getnode();
+temp->link=NULL;
+temp->info=elem;
+if(first==NULL)
+return temp;
+cur=first;
+prev=NULL;
+while(cur!=NULL)
+{
+prev=cur;
+cur=cur->link;
+}
+prev->link=temp;
+return first;
+}
+NODE delete_at_pos(NODE first,int elem,int pos)
+{
+    NODE cur,prev;
+    int i;
+   if(first==NULL)
+   {
+       printf("empty sll\n");
+       return;
+   }
+    cur=first;
+    prev=NULL;
+    for(i=0;i<pos;i++)
+    {
+        prev=cur;
+        cur=cur->link;
+    }   
+    prev->link=cur->link;
+   free(cur);
+    return first;
+}
+void display(NODE first)
+{
+NODE cur;
+cur=first;
+if(cur==NULL)
+{
+printf("SLL is empty");
+return;
+}
+printf("elem of sll\n");
+while(cur!=NULL)
+{
+printf("%d\n",cur->info);
+cur=cur->link;
+}
+}
+int main()
+{
+NODE first=NULL;
+int elem,ch,pos;
+ printf("Enter the position to be insert  \n" );
+scanf("%d", &pos);
+            while(1)
+{
+printf("enter 1.insert_rear\t 2.delete_at_pos\t 3.display\t 4.exit\n");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+       printf("Enter the  element\n");
+       scanf("%d",&elem);
+       first=insert_rear(first,elem);
+       break;
+case 2:
+     delete_at_pos(first,elem,pos);
+       break;
+
+       case 3:display(first);
+       break;
+default:
+         exit(0);
+ }
+}
+}

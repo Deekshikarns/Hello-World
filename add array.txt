@@ -1,0 +1,30 @@
+#include<stdio.h>
+void accept(int arr[10],int *num)
+{  
+int i;
+printf("enter the element\n");   
+ scanf("%d",num);  
+  printf("enter the array\n"); 
+ for(i=0;i<*num;i++) 
+ scanf("%d",&arr[i]);
+}
+void add(int arr[10],int n)
+{
+    int i,sum=0;
+    for(i=0;i<n;i++)
+    {
+        sum+=arr[i];
+    }
+    printf("sum of  arrays is %d\n",sum);
+}
+
+int main()
+{    
+int num,arr[10];   
+accept(arr,&num);   
+add(arr,num);
+ return 0;
+}
+
+
+

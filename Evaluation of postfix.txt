@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<ctype.h>
+#define max_size 4 
+void push(int s[max_size],int *top,char symbol)
+{      
+ if(*top==max_size-1)   
+   {               
+printf("overflow\n");             
+return;    
+}    
+   (*top)++;       
+s[*top]=symbol;
+}
+char pop(int s[max_size],int *top)
+{  
+  char symbol;      
+ if(*top==-1) 
+   {        
+printf("underflow\n");    
+}  
+  else   
+ {  
+  symbol=s[*top];   
+ (*top)--;   
+ return symbol;    
+}
+}
+int compute(int op1,char operator,int op2){    switch(operator)  
+  {        
+case '+':return op1+op2;       
+ case '-':return op1-op2;        
+case '*':return op1*op2;  
+      case '/':return op1/op2;    
+    case '%':return op1%op2;    
+    case '$':   
+     case '^':return pow(op1,op2); 
+   }
+}
+int  eval_postfix(char postfix[20])
+{
+    int i,s[max_size],op1,op2,res,top=-1;    
+char symbol;    
+for(i=0;postfix[i]!=0;i++)  
+  {    
+    symbol=postfix[i]; 
+       if(isdigit(symbol))     
+   {      
+      push(s,&top,symbol-'0');    
+    }  
+      else   
+     {    
+        op2=pop(s,&top);     
+       op1=pop(s,&top);    
+        res=compute(op1,symbol,op2);      
+      push(s,&top,res);    
+    }  
+  }    
+return pop(s,&top);
+}
+int main()
+{
+    int top=-1,s[max_size],res;    char postfix[20];  
+  printf("enter postfix expression\n");    
+scanf("%s",postfix);
+    res=eval_postfix(postfix);   
+ printf("result is %d\n",res);
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    char c;   
+  printf("enter the operator\n");   
+ scanf("%c",&c);   
+ printf("enter the value of a\n");  
+  scanf("%d",&a);   
+ printf("enter the value of b\n"); 
+   scanf("%d",&b);    
+switch(c)  
+  {        
+case '+':     
+               printf("sum of numbers is %d\n",a+b);     
+               break;       
+  case '-':       
+             printf("difference of numbers is %d\n",a-b);  
+                  break;      
+   case '*':           
+         printf("product of numbers is %d\n",a*b);    
+                break;       
+  case '/':        
+            printf("division of numbers is %d\n",a/b);     
+               break;         
+case '%':           
+         printf("modulus of numbers is %d\n",a%b);      
+              break;      
+  default:     
+                   printf("invalid data\n");         
+           break;    
+}
+}
+

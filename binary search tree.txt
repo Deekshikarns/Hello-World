@@ -1,0 +1,93 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    struct node *llink;
+    int info;
+    struct node *rlink;
+};
+typedef struct node *NODE;
+NODE getnode()
+{
+    NODE x;
+    x=(NODE)malloc(sizeof(struct node));
+    if(x==NULL)
+    {
+        printf("memory allocation is not possible\n");
+        exit(0);
+    }
+    return x;
+}
+NODE insert_BST(NODE root,int info)
+{
+    NODE cur,prev,temp;
+    temp=getnode();
+    temp->llink=temp->rlink=NULL;
+    temp->info=info;
+    if(root==NULL)
+       return temp;
+    cur=root;
+    while(cur!=NULL)
+    {
+        prev=cur;
+        if(cur->info>info)
+        {
+            cur=cur->llink;
+        }
+            else
+        {    
+            cur=cur->rlink;
+        }
+    }
+    if(prev->info>info)
+    {
+        prev->llink=temp;
+    } 
+        else
+    { 
+        prev->rlink=temp;
+    }
+     
+    return root;
+}
+void preorder(NODE root)
+{
+    if(root==NULL)
+    return;
+    printf("%d\n",root->info);
+    preorder(root->llink);
+     preorder(root->rlink);
+}
+void postorder(NODE root)
+{
+    if(root==NULL)
+    return;
+    postorder(root->llink);
+    postorder(root->rlink);
+      printf("%d\n",root->info);
+}
+void inorder(NODE root)
+{
+    if(root==NULL)
+    return;
+    inorder(root->llink);
+     printf("%d\n",root->info);
+     inorder(root->rlink);
+}
+int main()
+{
+    int i,n,info;
+    NODE root=NULL;
+    printf("Enter the number of elements\n");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("Enter the elements\n");
+        scanf("%d",&info);
+    root=insert_BST(root,info);
+
+    }
+        preorder(root); 
+        postorder(root);
+        inorder(root);
+}

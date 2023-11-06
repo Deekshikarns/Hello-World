@@ -1,0 +1,23 @@
+#include<stdio.h>
+struct Employee
+{	
+int Eid;	
+char Ename[20];	
+float Esal;
+};
+typedef struct Employee E;
+int main()
+{	
+E E1;	
+printf("Enter the employee id:\n");
+scanf("%d",&E1.Eid);	
+printf("Enter the employee name:\n");	
+scanf("%s",E1.Ename);	
+printf("Enter the employee salary:\n");	
+scanf("%f",&E1.Esal);	
+printf("Displaying the employee details:\n");	
+printf("\n\nName:%s\n",E1.Ename);	
+printf("\nEmployee ID:%d\n",E1.Eid);	
+printf("\nSalary:%f\n",E1.Esal);	
+return 0;
+}

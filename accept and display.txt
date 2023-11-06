@@ -1,0 +1,23 @@
+#include<stdio.h>
+void accept(int arr[10],int *num)
+{  
+int i;
+  printf("enter the array\n"); 
+ for(i=0;i<*num;i++) 
+ scanf("%d",&arr[i]);
+}
+void display(int arr[10],int n)
+{
+    int i;  
+  for(i=0;i<n;i++)    
+printf("%d\n",arr[i]);
+}
+int main()
+{    
+int num,arr[10];   
+ printf("enter the element\n");   
+ scanf("%d",&num);    
+accept(arr,&num);   
+ display(arr,num);   
+ return 0;
+}

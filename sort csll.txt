@@ -1,0 +1,111 @@
+#include<stdio.h> 
+#include<stdlib.h>
+struct node
+{   
+ int info;   
+ struct node *link;
+};
+typedef struct node* NODE;
+NODE getnode()
+{ 
+   NODE x; 
+   x=(NODE)malloc(sizeof(struct node));  
+  if(x==NULL)   
+ {
+        printf("mem  not available");   
+     exit(0); 
+   }
+    return x;
+}
+int count(NODE last)
+{  
+  int c=0;   
+ NODE cur;  
+  cur=last;   
+    if(last==NULL)    
+return 0;  
+   cur=last->link;   
+ while(cur!=last) 
+   {    
+    c++;    
+    cur=cur->link;  
+  }   
+ c++;   
+ return c;
+}
+NODE insert(NODE last , int elem)
+{   
+ NODE temp;   
+ temp=getnode();  
+  temp->info=ele;  
+  if(last==NULL)  
+  last=temp; 
+   else     
+   temp->link=last->link;                 
+   last->link=temp;
+        return last;
+}
+void sort(NODE last)
+{
+  int i,n,t; 
+ NODE first,next; 
+ n=count(last); 
+ for(i=0;i<n-1;i++) 
+ {          
+      first=last->link;     
+     next=first->link;  
+    do   
+   {        
+  if(first->info>next->info)    
+      {          
+    t=first->info;             
+ first->info=next->info;         
+     next->info=t;        
+  }      
+    first=next;       
+   next=first->link;   
+   }         
+   while(first!=last);
+  }
+ }
+NODE display(NODE last)
+  {      
+    NODE cur; 
+   if(last==NULL) 
+   {    
+    printf("no elements");  
+      return NULL; 
+   }  
+  cur=last->link;  
+  while(cur!=last)  
+  {      
+  printf("%d\n",cur->info);       
+ cur=cur->link;       
+     }
+}
+int main()
+{
+        NODE last=NULL;   
+         int ch,ele,co;  
+         while(1)
+        { 
+                  printf("enter 1-insert,2-count,3-sort,4-display,5-exit \n");   
+                  scanf("%d",&ch);  
+                  switch(ch)    
+                  {     
+                           case 1:  printf("enter ele\n");  
+                                         scanf("%d",&ele);  
+                                         last=insert(last,ele);  
+                                         break;    
+                          case 2:  co=count(last);  
+                                         printf("%d",co);
+                                        break;     
+                           case 3: sort(last);   
+                                         break;   
+                           case 4:   display(last);   
+                                          break;
+                            default: exit(0);           
+                  } 
+          }
+}
+
