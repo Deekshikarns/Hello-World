@@ -19,7 +19,7 @@ if(elem!=0)
 a[k].row=i;				
 a[k].col=j;				
 a[k].value=elem;				
-k++;			}		
+k++;			}		
 }	
 }	
 a[0].row=m;	
